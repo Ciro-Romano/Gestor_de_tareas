@@ -5,11 +5,16 @@
 </head>
 <body>
     <h1>Lista de Tareas</h1>
+    <a href="{% url 'crear_tarea' %}">➕ Nueva tarea</a>
     <ul>
         {% for tarea in tareas %}
             <li>
-                {{ tarea.titulo }} - {% if tarea.completada %}✅{% else %}❌{% endif %}
+                <strong>{{ tarea.titulo }}</strong> - {{ tarea.descripcion }}  
+                {% if tarea.completada %}✅{% else %}❌{% endif %}
+                <a href="{% url 'editar_tarea' tarea.id %}">✏️ Editar</a>
             </li>
+        {% empty %}
+            <li>No hay tareas todavía.</li>
         {% endfor %}
     </ul>
 </body>
